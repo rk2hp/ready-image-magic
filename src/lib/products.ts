@@ -25,7 +25,7 @@ export interface Product {
   category: Category;
   moods: Mood[];
   bestSeller: boolean;
-  images: string[];
+  images: [string, ...string[]];
   aspect: "tall" | "square" | "wide";
 }
 
