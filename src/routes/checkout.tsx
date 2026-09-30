@@ -23,7 +23,7 @@ export const Route = createFileRoute("/checkout")({
 const field =
   "w-full rounded-sm border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary";
 
-function Field({ label, name, error, children }: { label: string; name: string; error?: string; children?: React.ReactNode }) {
+function Field({ label, name, error, children }: { label: string; name: string; error?: string | undefined; children?: React.ReactNode }) {
   return (
     <label className="block">
       <span className="eyebrow text-muted-foreground">{label}</span>
@@ -90,18 +90,18 @@ function CheckoutPage() {
         </p>
         <form onSubmit={onSubmit} className="mt-10 grid gap-12 lg:grid-cols-[1.5fr_1fr]">
           <div className="grid gap-5 sm:grid-cols-2">
-            <div className="sm:col-span-2"><Field label="Full name *" name="customer_name" error={errors.customer_name} /></div>
-            <Field label="WhatsApp number *" name="whatsapp" error={errors.whatsapp} />
-            <Field label="Phone (optional)" name="phone" error={errors.phone} />
-            <div className="sm:col-span-2"><Field label="Email (optional)" name="email" error={errors.email} /></div>
+            <div className="sm:col-span-2"><Field label="Full name *" name="customer_name" error={errors["customer_name"]} /></div>
+            <Field label="WhatsApp number *" name="whatsapp" error={errors["whatsapp"]} />
+            <Field label="Phone (optional)" name="phone" error={errors["phone"]} />
+            <div className="sm:col-span-2"><Field label="Email (optional)" name="email" error={errors["email"]} /></div>
             <div className="sm:col-span-2">
-              <Field label="Delivery address *" name="address" error={errors.address}>
+              <Field label="Delivery address *" name="address" error={errors["address"]}>
                 <textarea name="address" rows={3} className={field} />
               </Field>
             </div>
-            <Field label="City *" name="city" error={errors.city} />
-            <Field label="State *" name="state" error={errors.state} />
-            <Field label="Pincode *" name="pincode" error={errors.pincode} />
+            <Field label="City *" name="city" error={errors["city"]} />
+            <Field label="State *" name="state" error={errors["state"]} />
+            <Field label="Pincode *" name="pincode" error={errors["pincode"]} />
             <Field label="Occasion" name="occasion" />
             <Field label="Preferred date" name="preferred_delivery_date">
               <input type="date" name="preferred_delivery_date" className={field} />
@@ -115,12 +115,12 @@ function CheckoutPage() {
               </select>
             </Field>
             <div className="sm:col-span-2">
-              <Field label="Gift message" name="gift_message" error={errors.gift_message}>
+              <Field label="Gift message" name="gift_message" error={errors["gift_message"]}>
                 <textarea name="gift_message" rows={2} maxLength={400} className={field} />
               </Field>
             </div>
             <div className="sm:col-span-2">
-              <Field label="Anything else?" name="additional_notes" error={errors.additional_notes}>
+              <Field label="Anything else?" name="additional_notes" error={errors["additional_notes"]}>
                 <textarea name="additional_notes" rows={2} maxLength={600} className={field} />
               </Field>
             </div>

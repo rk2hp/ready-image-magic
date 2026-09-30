@@ -51,7 +51,7 @@ function Shop() {
                 to="/shop"
                 search={{ category: c.id }}
                 className={`rounded-full px-4 py-2 text-[11px] uppercase tracking-[0.16em] transition ${
-                  category === c.id
+                  (category ?? "all") === c.id
                     ? "bg-primary text-primary-foreground"
                     : "border border-border hover:border-primary"
                 }`}
