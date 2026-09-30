@@ -192,3 +192,11 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+@keyframes twispp-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@utility marquee {
+  animation: twispp-marquee 38s linear infinite;
+}
