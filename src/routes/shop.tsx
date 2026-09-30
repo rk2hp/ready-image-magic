@@ -6,9 +6,8 @@ import { SiteLayout } from "@/components/site/layout";
 import { categories, products } from "@/lib/products";
 
 export const Route = createFileRoute("/shop")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    category: typeof search.category === "string" ? search.category : "all",
-  }),
+  validateSearch: (search: Record<string, unknown>): { category?: string } =>
+    typeof search["category"] === "string" ? { category: search["category"] } : {},
   head: () => ({
     meta: [
       { title: "Shop handmade flowers — Twispp" },
