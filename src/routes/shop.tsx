@@ -30,7 +30,7 @@ function Shop() {
   const { category } = Route.useSearch();
 
   const filtered = products.filter((p) => {
-    if (category === "all") return true;
+    if (!category || category === "all") return true;
     if (category === "best-sellers") return p.bestSeller;
     return p.category === category;
   });
