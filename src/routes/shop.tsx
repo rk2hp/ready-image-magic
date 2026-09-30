@@ -6,9 +6,8 @@ import { SiteLayout } from "@/components/site/layout";
 import { categories, products } from "@/lib/products";
 
 export const Route = createFileRoute("/shop")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    category: typeof search.category === "string" ? search.category : "all",
-  }),
+  validateSearch: (search: Record<string, unknown>): { category?: string } =>
+    typeof search["category"] === "string" ? { category: search["category"] } : {},
   head: () => ({
     meta: [
       { title: "Shop handmade flowers — Twispp" },
@@ -31,7 +30,7 @@ function Shop() {
   const { category } = Route.useSearch();
 
   const filtered = products.filter((p) => {
-    if (category === "all") return true;
+    if (!category || category === "all") return true;
     if (category === "best-sellers") return p.bestSeller;
     return p.category === category;
   });
@@ -52,7 +51,7 @@ function Shop() {
                 to="/shop"
                 search={{ category: c.id }}
                 className={`rounded-full px-4 py-2 text-[11px] uppercase tracking-[0.16em] transition ${
-                  category === c.id
+                  (category ?? "all") === c.id
                     ? "bg-primary text-primary-foreground"
                     : "border border-border hover:border-primary"
                 }`}
