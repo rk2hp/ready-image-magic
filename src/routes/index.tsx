@@ -222,7 +222,7 @@ function Promises() {
 }
 
 function MoodPicker() {
-  const [active, setActive] = useState<Mood>(moods[0].id);
+  const [active, setActive] = useState<Mood>("for-your-crush");
   const shown = products.filter((p) => p.moods.includes(active));
   const current = moods.find((m) => m.id === active)!;
 
